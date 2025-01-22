@@ -25,5 +25,6 @@ python version: Python 3.12.0
 ---------------------------------------
 
 You can view the source code in source_code.py file.
+There is small issues to be fixed later on, it is mentioned in issues.txt file
 
 ---------------------------------------
