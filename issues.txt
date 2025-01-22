@@ -1,0 +1,17 @@
+There are some issues in the source_code that need a logic fixations
+I might fix it later on.
+
+  1. When running the webpage on the phone, it needs a double click on the Check button to view the answer. 
+    One click will just change the set of the emojis, the session_state and even the value variable would not change at all.
+
+  2. The game checks the values you entered as same as it is stored in the session_state, so if you write the name of the show correctly, you need to write it using lower case letters.
+    otherwise, your answer are going to be evaluated wrong.
+
+  3. When changing the category, a new set of emojis are going to show off on the screen. However, even if you get the show name right, 
+    the show name meant for comparsion and evalute you answer is the last name appended to the session_state.
+
+Otherwise, the game is so entertaining. I enjoyed coding it so much.
+This was my first time using a python code to design a webpage to do a specific task. Regardless of the points of fixation, this is an 
+opportunity to learn and practice to develop my coding skills more.
+
+**This program is for education and skill development purposes**
