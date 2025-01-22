@@ -1,5 +1,5 @@
 There are some issues in the source_code that need a logic fixations
-I might fix it later on.
+I might fix them later on.
 
   1. When running the webpage on the phone, it needs a double click on the Check button to view the answer. 
     One click will just change the set of the emojis, the session_state and even the value variable would not change at all.
