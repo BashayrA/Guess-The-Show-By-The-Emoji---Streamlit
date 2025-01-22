@@ -1,5 +1,9 @@
 # Guess The Show By A List Of Emojies
 ---------------------------------------
+You can visit the game webpage using this link:
+https://guess-the-show-by-the-emoji---app.streamlit.app/
+hosted by **Streamlit Community Cloud**
+---------------------------------------
 
 ## To Play The Game :
   1. Choose a category out of five common show channels
@@ -20,3 +24,5 @@ python version: Python 3.12.0
 ---------------------------------------
 
 You can view the source code in source_code.py file.
+
+---------------------------------------
