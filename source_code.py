@@ -1,6 +1,7 @@
 import streamlit as st
 import random
 import time
+import os
 
 def launch_game(path: str):
     '''Control the flow of the game and choosing a random Show for the player to guess'''
@@ -43,20 +44,26 @@ def match_selection():
     # store the selection choice and match it with the same category
     selection = st.segmented_control('',  ["Netflix series", "Disney", "Spacetoon", "MBC3", "Cartoon Network"])
 
-    if selection == "Netflix series":
-            launch_game("guessgameN.txt")
-  
+    if selection == "Cartoon Network":
+        # read the file path from os to generalize its location format
+        cn = os.path.join(os.path.dirname(__file__), "cn.txt")
+        launch_game(cn)
+    
     elif selection == "Disney":
-            launch_game("guessgameDisney.txt")  
+        Disney = os.path.join(os.path.dirname(__file__), "Disney.txt")
+        launch_game(Disney)  
     
     elif selection == "Spacetoon":
-            launch_game("guessgamest.txt") 
+        st = os.path.join(os.path.dirname(__file__), "st.txt")
+        launch_game(st) 
 
     elif selection == "MBC3":
-            launch_game("guessgameMBC3.txt")                   
+        mbc3 = os.path.join(os.path.dirname(__file__), "MBC3.txt")
+        launch_game(mbc3)                   
 
-    elif selection == "Cartoon Network":
-            launch_game("guessgameCN.txt")     
+    elif selection == "Netflix series":
+        Netflix = os.path.join(os.path.dirname(__file__), "Netflix.txt")
+        launch_game(Netflix)     
 
 # main code
 st.set_page_config("Guess The Show By Emoji", "✨", layout="wide")
