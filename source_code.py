@@ -43,20 +43,19 @@ def match_selection():
     # store the selection choice and match it with the same category
     selection = st.segmented_control('',  ["Netflix series", "Disney", "Spacetoon", "MBC3", "Cartoon Network"])
 
-    match selection:
-        case "Netflix series":
+    if selection == "Netflix series":
             launch_game("guessgameN.txt")
   
-        case "Disney":
+    elif selection == "Disney":
             launch_game("guessgameDisney.txt")  
     
-        case "Spacetoon":
+    elif selection == "Spacetoon":
             launch_game("guessgamest.txt") 
 
-        case "MBC3":
+    elif selection == "MBC3":
             launch_game("guessgameMBC3.txt")                   
 
-        case "Cartoon Network":
+    elif selection == "Cartoon Network":
             launch_game("guessgameCN.txt")     
 
 # main code
