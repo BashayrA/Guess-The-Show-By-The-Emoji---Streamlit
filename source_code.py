@@ -17,7 +17,7 @@ def launch_game(path: str):
     
     # display the emojies, the text input box, and the button 
     st.write(emoji)
-    value = st.text_input("Your Guess")
+    value = (st.text_input("Your Guess")).lower()
     st.subheader('', divider='red')
     button = st.button("Check")
     
@@ -32,7 +32,7 @@ def launch_game(path: str):
             st.balloons()
             st.write(f"Correct! \n{value} is the right answer")
         else:
-            st.write(f"wrong 😓   ({st.session_state['name'][-1]}) is the right answer")
+            st.write(f"wrong 😓 ({st.session_state['name'][-1]}) is the right answer")
         
         # add the next name to appear immedietly
         st.session_state['name'].append(name.lower())    
