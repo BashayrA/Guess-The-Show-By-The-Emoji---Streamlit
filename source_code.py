@@ -9,38 +9,34 @@ def launch_game(path: str):
     # choosing a show randomly from the file and storing its name and emojies
     games_list = open(path, encoding="utf-8").readlines()
     index = random.randint(0, len(games_list)-1)
-    name, emoji = games_list[index].split('/')
+    show, emoji = games_list[index].split('/')
     emoji.strip()
-    name.strip()
-    
-    # a short delay to view the emojies and the show name together for a while of time 
-    time.sleep(1)
+    show.strip()
     
     # display the emojies, the text input box, and the button 
     st.write(emoji)
     value = (st.text_input("Your Guess")).lower()
     st.subheader('', divider='red')
-    button = st.button("Check")
     
     # check if the session_state is empty then add a 'name' attribute to store show names and add the first appearing show
-    if 'name' not in st.session_state:
-        st.session_state['name'] = []
-        st.session_state['name'].append(name.lower())
-    
-    # check for the show name after clicking the button
-    if button: #static file + write on file at the beggining
-        if value in st.session_state['name']:
-            st.balloons()
-            st.write(f"Correct! \n{value} is the right answer")
-        else:
-            st.write(f"wrong 😓 ({st.session_state['name'][-1]}) is the right answer")
+    if 'show' not in st.session_state:
+        st.session_state['show'] = []
+        st.session_state['show'].append(show.lower())
+
+    if value in st.session_state['show']:
+        st.balloons()
+        st.write(f"Correct! {value} is the right answer")
+    elif value == "":
+        st.write("text field is empty")
+    else:
+        st.write(f"wrong 😓 ({st.session_state['show'][-1]}) is the right answer")
         
         # add the next name to appear immedietly
-        st.session_state['name'].append(name.lower())    
+        st.session_state['show'].append(show.lower())    
 
 
 def match_selection():
-    '''Retrieve the show data (name, emojies)'''
+    '''Retrieve the show data (show, emojies)'''
     # store the selection choice and match it with the same category
     selection = st.segmented_control('',  ["Netflix series", "Disney", "Spacetoon", "MBC3", "Cartoon Network"])
 
@@ -54,8 +50,8 @@ def match_selection():
         launch_game(Disney)  
     
     elif selection == "Spacetoon":
-        st = os.path.join(os.path.dirname(__file__), "st.txt")
-        launch_game(st) 
+        spacet = os.path.join(os.path.dirname(__file__), "st.txt")
+        launch_game(spacet) 
 
     elif selection == "MBC3":
         mbc3 = os.path.join(os.path.dirname(__file__), "MBC3.txt")
