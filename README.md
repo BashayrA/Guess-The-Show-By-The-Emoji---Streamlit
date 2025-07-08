@@ -10,11 +10,9 @@ hosted by **Streamlit Community Cloud**
   2. A list of four emojies are displayed
   3. Try to guess the show's name
   4. Write it in the text box
-  5. Submit your answer by clicking the "Check" button
-  6. Wait for you score !!
-  7. Have Fun ✨😍
+  5. Check your Score!
+  6. Have Fun !! ✨😍
 
- **When you use the app on your phone double click the Check button to view the answer**
 ---------------------------------------
 
 This game is made using streamlit library in python 
@@ -25,6 +23,6 @@ python version: Python 3.12.0
 ---------------------------------------
 
 You can view the source code in source_code.py file.
-There is small issues to be fixed later on, it is mentioned in issues.txt file
+There is small issue to be fixed later on, it is mentioned in issues.txt file
 
 ---------------------------------------
