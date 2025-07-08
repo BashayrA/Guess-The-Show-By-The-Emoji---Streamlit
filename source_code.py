@@ -1,9 +1,8 @@
 import streamlit as st
 import random
-import time
 import os
 
-def launch_game(path: str, progress = 0):
+def launch_game(path: str):
     '''Control the flow of the game and choosing a random Show for the player to guess'''
 
     # choosing a show randomly from the file and storing its name and emojies
@@ -14,64 +13,109 @@ def launch_game(path: str, progress = 0):
     show.strip().lower()
     
     # display the emojies, the text input box, and the button 
-    st.write(emoji)
-    value = (st.text_input("Your Guess")).lower()
-    st.subheader('', divider='red')
+    col1, col2, col3 = st.columns([1, 2, 1])  # Side padding with center focus
+    with col2:
+        st.markdown(f"<p style='text-align: center; font-size: 64px;'>{emoji}</p>", unsafe_allow_html=True)
+        value = (st.text_input("Your Guess")).lower()
     
     # check if the session_state is empty then add a 'name' attribute to store show names and add the first appearing show
     if 'show' not in st.session_state:
         st.session_state['show'] = []
         st.session_state['show'].append(show)
         st.session_state['score'] = 0
-    
+
     if value == "":
         pass
-        #st.write("text field is empty")
-    
     elif value in st.session_state['show'][-1]:
         st.balloons()
-        st.write(f"Correct! {st.session_state['show'][-1]} is the right answer")
+        st.markdown(f"<p style='text-align: center; color: green; font-size: 24px;'>✅ Correct! <strong>{st.session_state['show'][-1]}</strong> is the right answer</p>", unsafe_allow_html=True)
         st.session_state['score'] += 1
-
     else:
-        st.write(f"wrong 😓 ({st.session_state['show'][-1]}) is the right answer")
+        st.markdown(f"<p style='text-align: center; color: red; font-size: 24px;'>❌ Wrong! The correct answer was <strong>{st.session_state['show'][-1]}</strong></p>", unsafe_allow_html=True)
 
     # add the next name to appear immedietly
-    st.session_state['show'].append(show.lower())    
+    st.session_state['show'].append(show.lower())
 
-    # adding the score counter
-    st.write('Score: ', st.session_state['score']*'🌟')
+    with col2:
+        st.markdown(f"<h4 style='text-align: center;'>Score: {st.session_state['score']}/{len(st.session_state['show'])-2}</h4>", unsafe_allow_html=True)
 
 def match_selection():
     '''Retrieve the show data (show, emojies)'''
-    # store the selection choice and match it with the same category
-    selection = st.segmented_control('',  ["Netflix series", "Disney", "Spacetoon", "MBC3", "Cartoon Network"])
+    
+    # Stylish header with sparkle
+    st.markdown(
+        "<h1 style='text-align: center; font-size: 32px;'>🎮 Choose a Category to Begin!</h1>",
+        unsafe_allow_html=True
+    )
 
-    if selection == "Cartoon Network":
+    left, center, right = st.columns([1, 2, 1])
+    with center:
+        st.markdown("<p style='font-size: 24px; text-align: center;'>✨ Choose a Category</p>", unsafe_allow_html=True)
+        selection = st.radio(
+            "",
+            ["📺 Netflix series", "🧚 Disney", "🚀 Spacetoon", "🎮 MBC3", "🎨 Cartoon Network"],
+            label_visibility="collapsed"
+        )
+
+    if selection == "🎨 Cartoon Network":
         # read the file path from os to generalize its location format
         cn = os.path.join(os.path.dirname(__file__), "cn.txt")
         launch_game(cn)
     
-    elif selection == "Disney":
+    elif selection == "🧚 Disney":
         Disney = os.path.join(os.path.dirname(__file__), "Disney.txt")
-        launch_game(Disney)  
+        launch_game(Disney)
     
-    elif selection == "Spacetoon":
+    elif selection == "🚀 Spacetoon":
         spacet = os.path.join(os.path.dirname(__file__), "st.txt")
-        launch_game(spacet) 
+        launch_game(spacet)
 
-    elif selection == "MBC3":
+    elif selection == "🎮 MBC3":
         mbc3 = os.path.join(os.path.dirname(__file__), "MBC3.txt")
-        launch_game(mbc3)                   
+        launch_game(mbc3)             
 
-    elif selection == "Netflix series":
+    elif selection == "📺 Netflix series":
         Netflix = os.path.join(os.path.dirname(__file__), "Netflix.txt")
-        launch_game(Netflix)     
+        launch_game(Netflix)
 
 # main code
 st.set_page_config("Guess The Show By Emoji", "✨", layout="wide")
-st.header("Guess The Show By Emojies", divider='blue')
-st.subheader("Choose a Category", divider='red')
-st.subheader("Based on the Emojies Bellow .. Guess The Name Of The Show")
+
+# page styling
+st.markdown("""
+    <style>
+    /* 🔲 Dark but gentle background */
+    .stApp {
+        background-color: #1c1c1e;  /* Soft charcoal */
+    }
+
+    /* 🎨 General text styling */
+    h1, h2, h3 {
+        color: #ff66c4 !important;  /* Neon pink for headers */
+        text-shadow: 0 0 4px #ff66c4;
+    }
+
+    h4, p, label {
+        color: #66fcf1 !important;  /* Aqua accents for prompts */
+        text-shadow: none;
+    }
+
+    /* 🎮 Text input box */
+    .stTextInput > div > input {
+        background-color: #2f2f33 !important;
+        color: #000000 !important;  /* Black typed text for visibility */
+        border: 2px solid #ff66c4 !important;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    /* 🧾 Subheader tweaks */
+    .stMarkdown div {
+        font-family: 'Segoe UI', sans-serif;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+st.markdown("<h1 style='text-align: center; color: #6c63ff;'>🎭 Guess the Show by Emojis!</h1>", unsafe_allow_html=True)
 match_selection()
-st.subheader("", divider='blue')
+st.subheader("", divider='blue') # last part of the page
