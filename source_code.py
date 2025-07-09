@@ -1,6 +1,15 @@
 import streamlit as st
 import random
 import os
+import difflib
+
+def is_match(value, correct_title, threshold=0.6):
+    '''basic comparsion for misspelled words'''
+
+    similarity = difflib.SequenceMatcher(None, value.lower(), correct_title.lower()).ratio()
+    st.session_state['show_number'] += 1
+    return similarity >= threshold
+
 
 def launch_game(path: str):
     '''Control the flow of the game and choosing a random Show for the player to guess'''
@@ -16,17 +25,17 @@ def launch_game(path: str):
     col1, col2, col3 = st.columns([1, 2, 1])  # Side padding with center focus
     with col2:
         st.markdown(f"<p style='text-align: center; font-size: 46px;'>{emoji}</p>", unsafe_allow_html=True)
-        value = (st.text_input("Your Guess")).lower()
+        value = st.text_input("Your Guess")
     
     # check if the session_state is empty then add a 'name' attribute to store show names and add the first appearing show
     if 'show' not in st.session_state:
         st.session_state['show'] = []
         st.session_state['show'].append(show)
-        st.session_state['score'] = 0
 
+    # game basic comparsion
     if value == "":
         pass
-    elif value in st.session_state['show'][-1]:
+    elif is_match(value, st.session_state['show'][-1]) or value.lower() in st.session_state['show'][-1].lower():
         st.balloons()
         st.markdown(f"<p style='text-align: center; color: green; font-size: 18px;'>✅ Correct! <strong>{st.session_state['show'][-1]}</strong> is the right answer</p>", unsafe_allow_html=True)
         st.session_state['score'] += 1
@@ -37,10 +46,17 @@ def launch_game(path: str):
     st.session_state['show'].append(show.lower())
 
     with col2:
-        st.markdown(f"<h4 style='text-align: center;'>Score: {st.session_state['score']}/{len(st.session_state['show'])-2}</h4>", unsafe_allow_html=True)
+        st.markdown(f"<h4 style='text-align: center;'>Score: {st.session_state['score']}/{st.session_state['show_number']}</h4>", unsafe_allow_html=True)
 
 def match_selection():
     '''Retrieve the show data (show, emojies)'''
+
+    if 'score' not in st.session_state:
+        st.session_state['score'] = 0
+
+    if 'show_number' not in st.session_state:
+        st.session_state['show_number'] = 0
+
 
     left, center, right = st.columns([1, 2, 1])
     with center:

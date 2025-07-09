@@ -1,14 +1,6 @@
-There is a single issue tied to the scoring base as it keeps 
-counting the shows added to the st.session_state['show'] list
-even when user changes the category from one to another.
-
-a possible solution could be implemented by tracking the selected category
-if any changes happened to it as a variable and 
-it is possible using st.session_state['selected_category']
-
-maybe starting a new count for every new category selection?
-
-Otherwise, the game is so entertaining. I enjoyed coding it so much.
+All issues are fixed so far 
+...
+The game is so entertaining. I enjoyed coding it so much.
 This was my first project using a python code to design a webpage to do a specific task. Regardless of the points of fixation, this is an 
 opportunity to learn and practice to develop my coding skills more.
 
