@@ -19,7 +19,7 @@ def launch_game(path: str):
     index = random.randint(0, len(games_list)-1)
     show, emoji = games_list[index].split('/')
     emoji.strip()
-    show.strip().lower()
+    show.strip()
     
     # display the emojies, the text input box, and the button 
     col1, col2, col3 = st.columns([1, 2, 1])  # Side padding with center focus
