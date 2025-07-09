@@ -1,7 +1,7 @@
 # Guess The Show By A List Of Emojies
 ---------------------------------------
 You can visit the game webpage using this link:
-https://guess-the-show-by-the-emoji---app.streamlit.app/
+https://guess-the-show-by-the-emoji.streamlit.app/
 
 hosted by **Streamlit Community Cloud**
 ---------------------------------------
