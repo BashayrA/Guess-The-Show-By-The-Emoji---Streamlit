@@ -2,6 +2,7 @@
 ---------------------------------------
 You can visit the game webpage using this link:
 https://guess-the-show-by-the-emoji---app.streamlit.app/
+
 hosted by **Streamlit Community Cloud**
 ---------------------------------------
 
@@ -10,8 +11,8 @@ hosted by **Streamlit Community Cloud**
   2. A list of four emojies are displayed
   3. Try to guess the show's name
   4. Write it in the text box
-  5. Check your Score!
-  6. Have Fun !! ✨😍
+  5. Submit your answer by clicking Enter
+  6. Have Fun ✨😍
 
 ---------------------------------------
 
