@@ -15,7 +15,7 @@ def launch_game(path: str):
     # display the emojies, the text input box, and the button 
     col1, col2, col3 = st.columns([1, 2, 1])  # Side padding with center focus
     with col2:
-        st.markdown(f"<p style='text-align: center; font-size: 64px;'>{emoji}</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='text-align: center; font-size: 46px;'>{emoji}</p>", unsafe_allow_html=True)
         value = (st.text_input("Your Guess")).lower()
     
     # check if the session_state is empty then add a 'name' attribute to store show names and add the first appearing show
@@ -28,10 +28,10 @@ def launch_game(path: str):
         pass
     elif value in st.session_state['show'][-1]:
         st.balloons()
-        st.markdown(f"<p style='text-align: center; color: green; font-size: 24px;'>✅ Correct! <strong>{st.session_state['show'][-1]}</strong> is the right answer</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='text-align: center; color: green; font-size: 18px;'>✅ Correct! <strong>{st.session_state['show'][-1]}</strong> is the right answer</p>", unsafe_allow_html=True)
         st.session_state['score'] += 1
     else:
-        st.markdown(f"<p style='text-align: center; color: red; font-size: 24px;'>❌ Wrong! The correct answer was <strong>{st.session_state['show'][-1]}</strong></p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='text-align: center; color: red; font-size: 18px;'>❌ Wrong! The correct answer was <strong>{st.session_state['show'][-1]}</strong></p>", unsafe_allow_html=True)
 
     # add the next name to appear immedietly
     st.session_state['show'].append(show.lower())
@@ -41,12 +41,6 @@ def launch_game(path: str):
 
 def match_selection():
     '''Retrieve the show data (show, emojies)'''
-    
-    # Stylish header with sparkle
-    st.markdown(
-        "<h1 style='text-align: center; font-size: 32px;'>🎮 Choose a Category to Begin!</h1>",
-        unsafe_allow_html=True
-    )
 
     left, center, right = st.columns([1, 2, 1])
     with center:
